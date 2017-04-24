@@ -16,7 +16,6 @@ class Job < ApplicationRecord
   validates :activity_address,presence:true
   validates :contact_email,presence:true
   validates :wage_upper_bound,presence:true
-  validates :wage_lower_bound,numericality:{greater_than: 99}
 
   scope :published, -> { where(is_hidden:false) }
   scope :recent, -> {order('created_at desc') }
