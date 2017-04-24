@@ -1,10 +1,11 @@
-<h1> edit a job </h1>
+<h1> 编辑志愿者活动 </h1>
 <%= simple_form_for @job do |f| %>
-<%= f.input :title %>
-<%= f.input :description %>
-<%= f.input :wage_lower_bound,:label => "薪资下限" %>
-<%= f.input :wage_upper_bound,:label => "薪资上限" %>
-<%= f.input :contact_email %>
-<%= f.input :is_hidden %>
-<%= f.submit "提交" %>
+<%= f.input :title,:label => "标题" %>
+<%= f.input :activity_time,:label => "活动时间" %>
+<%= f.input :activity_address,:label => "活动地点" %>
+<%= f.input :wage_upper_bound,:label => "限制人数" %>
+<%= f.input :description,:label => "活动详情" %>
+<%= f.input :contact_email,:label => "联系方式" %>
+<%= f.input :is_hidden,:label => "是否隐藏" %>
+<%= f.submit "发布" %>
 <% end %>
