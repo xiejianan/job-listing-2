@@ -5,15 +5,16 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
-  def index
-    @jobs = case params[:order]
-    when 'by_lower_bound'
-      Job.published.order('wage_lower_bound desc')
-    when 'by_upper_bound'
-      Job.published.order('wage_upper_bound desc')
-    else
-      Job.published.recent
-    end
+    def index
+  @jobs = Job.recent.paginate(:page => params[:page], :per_page => 4)
+    #@jobs = Job.all
+#    when 'by_lower_bound'
+  #    Job.published.order('wage_lower_bound desc')
+    #when 'by_upper_bound'
+    #  Job.published.order('wage_upper_bound desc')
+  #  else
+    #  Job.published.recent
+    #end
   end
 
   def show

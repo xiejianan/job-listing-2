@@ -1,57 +1,101 @@
-<div class="pull-right">
-<%=link_to("add a job",new_job_path,:class=>"btn btn-default") %>
-</div>
-<div class="dropdown clearfix pull-right">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    排序
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-    <li>
-      <%= link_to("按照薪资下限排序",jobs_path(:order => "by_lower_bound")) %>
-    </li>
-    <li>
-    <%= link_to("按照薪资上限排序",jobs_path(:order => "by_upper_bound")) %>
-    </li>
-    <li>
-      <%= link_to("按照发布时间排序",jobs_path) %>
-    </li>
-  </ul>
-</div>
-<table class="table table-boldered">
-  <thead>
-    <tr>
-      <td>
-      志愿者活动 </td>
-      <td>发布时间</td>
-      <td>活动时间</td>
-      <td>活动地点</td>
-      <td>限制人数</td>
-      <td>联系方式</td>
-    </tr>
-  </thead>
-<tbody>
+<!DOCTYPE html>
+<html lang="en">
+<title>志愿者活动发布网</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 800px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 50%;
+    }
+
+   .glyphicon-time{
+     content:"\e023";
+    }
+
+    .w3-bar-item{
+      padding:8px 16px;float:left;width:auto;border:none;outline:none;display:block;
+    }
+
+     .w3-button{
+       width:100%;text-align:left;padding:8px 16px;
+     }
+
+     .w3-green{
+       color:#fff!important;background-color:#4CAF50!important;
+     }
+
+
+     .w1100 {
+         margin: 0 auto;
+         width: 1100px;
+     }
+    /* Set black background color, white text and some padding */
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+  </style>
+
+<body>
+
+
+
+    <div class="container-fluid" style="background:url(images/banner1.png); height:323px;">
+    </div>
+  </br>
+
+  <div class="container-fluid">
+<div class="row content">
+  <div class="col-sm-2 col-md-3 sidenav ">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active"><a href="#section1" class="w3-bar-item w3-button w3-green">首页</a></li>
+      <li><a href="jobs/about" class="w3-bar-item w3-button">往期活动</a></li>
+      <li><a href="#section2" class="w3-bar-item w3-button">联系我们</a></li>
+      <li><a href="#section2" class="w3-bar-item w3-button">关于我们</a></li>
+    </ul><br>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="搜索活动名">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </span>
+    </div>
+  </br></br>
+     <img src="images/hand.jpg" alt="Fjords" style="width:100%"></br>
+  </div>
+
+
+
+  <div class="col-sm-6 col-md-9">
+  <h2>活动列表</h2>
   <% @jobs.each do |job| %>
-  <tr>
-    <td>
-      <%= link_to(job.title,job_path(job)) %>
-    </td>
-    <td>
-      <%= job.created_at %>
-    </td>
-    <td>
-      <%= job.activity_time %>
-    </td>
-    <td>
-      <%= job.activity_address %>
-    </td>
-    <td>
-      <%= job.wage_upper_bound %>
-    </td>
-    <td>
-      <%= job.contact_email %>
-    </td>
-  </tr>
+  <hr>
+  <h2><%= link_to(job.title,job_path(job)) %></h2>
+  <h5><span class="glyphicon glyphicon-time"></span> 由 <%= job.contact_email %> 发布于 <%= job.created_at %></h5>
+  <p><span class="label label-success"><%= job.activity_address %></span> || <span class="label label-success">限制人数 / 已申请人数 ：<%= job.wage_upper_bound%> ／ <%=job.resumes.count%> <%= %></span></p>
+  <p>活动时间 : <%= job.activity_time %> ||  活动地点 : <%= job.activity_address %> ||  限制人数 : <%= job.wage_upper_bound %>人 ||
+    已申请人数 ：<%=job.resumes.count%>人 ||  联系方式 ：<%= job.contact_email %>  || 发布时间 ：<%= job.created_at%></p>
   <% end %>
-</tbody>
-</table>
+  <hr>
+     <div class="text-center">
+     <%= will_paginate @jobs %>
+   </div>
+ </br></br></br></br></br></br>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>

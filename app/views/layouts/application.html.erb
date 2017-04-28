@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>真·24K Offer</title>
-    <%= csrf_meta_tags %>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>志愿者活动发布网</title>
+        <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="shortcut icon" href="/images/favicon.ico">
-  </head>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      </head>
 
-  <body>
-    <div class="container-fluid">
-      <div class="row">
-        <%= render "common/navbar" %>
+      <body>
+        <div class="content">
+          <%= render "common/flashes" %>
+          <div class="container-fluid">
+          <div class="row">
+            <%= render "common/navbar" %>
+                <%= yield %>
+          </div>
+
+        </div>
       </div>
-      <%= render "common/flashes"%>
-        <%= yield %>
-    </div>
-       <%= render "common/footer" %>
-  </body>
-</html>
+           <%= render "common/footer" %>
+      </body>
+    </html>
